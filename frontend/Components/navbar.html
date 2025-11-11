@@ -1,0 +1,574 @@
+<!-- Main Navigation Bar Component -->
+<nav class="navbar">
+  <div class="logo">
+    <span class="logo-icon">🩺</span>
+    <span class="logo-text">Health<span class="logo-highlight">Sync</span></span>
+  </div>
+  
+  <div class="nav-menu" id="navMenu">
+    <ul class="nav-links">
+      <li><a href="dashboard.html" class="nav-link" data-page="dashboard">Dashboard</a></li>
+      <li><a href="vitals.html" class="nav-link" data-page="vitals">Vitals</a></li>
+      <li><a href="reminders.html" class="nav-link" data-page="reminders">Reminders</a></li>
+      <li><a href="meal-planner.html" class="nav-link" data-page="meal-planner">Meal Planner</a></li>
+      <li><a href="reports.html" class="nav-link" data-page="reports">Reports</a></li>
+    </ul>
+    
+    <div class="user-menu">
+      <div class="user-info">
+        <span class="user-avatar">👤</span>
+        <span class="user-name" id="userName">Loading...</span>
+      </div>
+      <div class="user-actions">
+        <button class="btn-icon" id="notificationsBtn" title="Notifications">
+          <span class="icon">🔔</span>
+          <span class="notification-badge" id="notificationCount">3</span>
+        </button>
+        <button class="btn-icon" id="settingsBtn" title="Settings">
+          <span class="icon">⚙️</span>
+        </button>
+        <button class="btn-logout" id="logoutBtn">Logout</button>
+      </div>
+    </div>
+  </div>
+  
+  <button class="nav-toggle" id="navToggle">
+    <span class="hamburger"></span>
+  </button>
+</nav>
+
+<!-- Notifications Dropdown -->
+<div class="notifications-dropdown" id="notificationsDropdown">
+  <div class="notifications-header">
+    <h4>Notifications</h4>
+    <button class="btn-clear" id="clearNotifications">Clear All</button>
+  </div>
+  <div class="notifications-list" id="notificationsList">
+    <!-- Notifications will be dynamically populated -->
+  </div>
+</div>
+
+<style>
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: var(--white);
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-blue);
+  }
+
+  .logo-highlight {
+    color: var(--primary-green);
+  }
+
+  .nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .nav-links {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-link {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .nav-link:hover,
+  .nav-link.active {
+    background: var(--secondary-blue);
+    color: var(--primary-blue);
+  }
+
+  .nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 1rem;
+    right: 1rem;
+    height: 2px;
+    background: var(--primary-blue);
+    border-radius: 2px;
+  }
+
+  .user-menu {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .user-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 8px;
+    transition: background 0.3s ease;
+  }
+
+  .user-info:hover {
+    background: var(--secondary-blue);
+  }
+
+  .user-avatar {
+    font-size: 1.2rem;
+  }
+
+  .user-name {
+    font-weight: 500;
+    color: var(--text-dark);
+  }
+
+  .user-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .btn-icon {
+    position: relative;
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+
+  .btn-icon:hover {
+    background: var(--secondary-blue);
+  }
+
+  .notification-badge {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    background: var(--danger-red);
+    color: white;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-size: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .btn-logout {
+    background: var(--danger-red);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background 0.3s ease;
+  }
+
+  .btn-logout:hover {
+    background: #d70015;
+  }
+
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+  }
+
+  .hamburger {
+    width: 25px;
+    height: 3px;
+    background: var(--text-dark);
+    margin: 3px 0;
+    transition: 0.3s;
+    border-radius: 2px;
+  }
+
+  /* Notifications Dropdown */
+  .notifications-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 2rem;
+    width: 350px;
+    background: var(--white);
+    border-radius: 12px;
+    box-shadow: var(--shadow-hover);
+    border: 1px solid var(--border-light);
+    display: none;
+    z-index: 1001;
+  }
+
+  .notifications-dropdown.show {
+    display: block;
+  }
+
+  .notifications-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .notifications-header h4 {
+    margin: 0;
+    color: var(--text-dark);
+  }
+
+  .btn-clear {
+    background: none;
+    border: none;
+    color: var(--primary-blue);
+    cursor: pointer;
+    font-size: 0.9rem;
+  }
+
+  .notifications-list {
+    max-height: 400px;
+    overflow-y: auto;
+  }
+
+  .notification-item {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-light);
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+
+  .notification-item:hover {
+    background: var(--secondary-blue);
+  }
+
+  .notification-item:last-child {
+    border-bottom: none;
+  }
+
+  .notification-item.unread {
+    background: #fff9e6;
+  }
+
+  .notification-title {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    color: var(--text-dark);
+  }
+
+  .notification-message {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin-bottom: 0.5rem;
+  }
+
+  .notification-time {
+    font-size: 0.8rem;
+    color: var(--text-light);
+  }
+
+  /* Mobile Styles */
+  @media (max-width: 768px) {
+    .navbar {
+      padding: 1rem;
+    }
+
+    .nav-menu {
+      position: fixed;
+      top: 70px;
+      left: -100%;
+      width: 100%;
+      height: calc(100vh - 70px);
+      background: var(--white);
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: stretch;
+      transition: left 0.3s ease;
+      padding: 2rem;
+      box-shadow: var(--shadow-hover);
+    }
+
+    .nav-menu.active {
+      left: 0;
+    }
+
+    .nav-links {
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .nav-link {
+      padding: 1rem;
+      border-radius: 0;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .user-menu {
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .user-info {
+      justify-content: center;
+    }
+
+    .nav-toggle {
+      display: flex;
+    }
+
+    .nav-toggle.active .hamburger:nth-child(1) {
+      transform: rotate(-45deg) translate(-5px, 6px);
+    }
+
+    .nav-toggle.active .hamburger:nth-child(2) {
+      opacity: 0;
+    }
+
+    .nav-toggle.active .hamburger:nth-child(3) {
+      transform: rotate(45deg) translate(-5px, -6px);
+    }
+
+    .notifications-dropdown {
+      right: 1rem;
+      width: calc(100vw - 2rem);
+    }
+  }
+</style>
+
+<script>
+  class NavbarComponent {
+    constructor() {
+      this.init();
+    }
+
+    init() {
+      this.setupEventListeners();
+      this.loadUserData();
+      this.loadNotifications();
+      this.setActivePage();
+    }
+
+    setupEventListeners() {
+      // Mobile menu toggle
+      const navToggle = document.getElementById('navToggle');
+      const navMenu = document.getElementById('navMenu');
+      
+      if (navToggle && navMenu) {
+        navToggle.addEventListener('click', () => {
+          navMenu.classList.toggle('active');
+          navToggle.classList.toggle('active');
+        });
+      }
+
+      // Notifications dropdown
+      const notificationsBtn = document.getElementById('notificationsBtn');
+      const notificationsDropdown = document.getElementById('notificationsDropdown');
+      
+      if (notificationsBtn && notificationsDropdown) {
+        notificationsBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          notificationsDropdown.classList.toggle('show');
+        });
+      }
+
+      // Close notifications when clicking outside
+      document.addEventListener('click', (e) => {
+        if (notificationsDropdown && !notificationsDropdown.contains(e.target) && 
+            notificationsBtn && !notificationsBtn.contains(e.target)) {
+          notificationsDropdown.classList.remove('show');
+        }
+      });
+
+      // Clear notifications
+      const clearNotifications = document.getElementById('clearNotifications');
+      if (clearNotifications) {
+        clearNotifications.addEventListener('click', () => {
+          this.clearAllNotifications();
+        });
+      }
+
+      // Logout button
+      const logoutBtn = document.getElementById('logoutBtn');
+      if (logoutBtn) {
+        logoutBtn.addEventListener('click', () => {
+          if (confirm('Are you sure you want to logout?')) {
+            AuthService.logout();
+          }
+        });
+      }
+
+      // Settings button
+      const settingsBtn = document.getElementById('settingsBtn');
+      if (settingsBtn) {
+        settingsBtn.addEventListener('click', () => {
+          // In a real app, this would open settings modal/page
+          alert('Settings feature coming soon!');
+        });
+      }
+    }
+
+    loadUserData() {
+      const user = HealthSyncUtils.getItem('user');
+      const userName = document.getElementById('userName');
+      
+      if (userName && user) {
+        userName.textContent = user.name || 'User';
+      }
+    }
+
+    loadNotifications() {
+      const notifications = HealthSyncUtils.getItem('notifications') || [
+        {
+          id: 1,
+          title: 'Medication Reminder',
+          message: 'Time to take Metformin',
+          time: new Date(Date.now() - 30 * 60 * 1000).toISOString(),
+          read: false,
+          type: 'medication'
+        },
+        {
+          id: 2,
+          title: 'Vitals Alert',
+          message: 'Blood pressure reading is high',
+          time: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(),
+          read: false,
+          type: 'alert'
+        },
+        {
+          id: 3,
+          title: 'Appointment Reminder',
+          message: 'Doctor appointment tomorrow at 2:00 PM',
+          time: new Date(Date.now() - 4 * 60 * 60 * 1000).toISOString(),
+          read: true,
+          type: 'appointment'
+        }
+      ];
+
+      this.renderNotifications(notifications);
+      this.updateNotificationBadge(notifications);
+    }
+
+    renderNotifications(notifications) {
+      const notificationsList = document.getElementById('notificationsList');
+      if (!notificationsList) return;
+
+      if (notifications.length === 0) {
+        notificationsList.innerHTML = `
+          <div class="notification-item">
+            <div class="notification-message">No notifications</div>
+          </div>
+        `;
+        return;
+      }
+
+      notificationsList.innerHTML = notifications.map(notification => `
+        <div class="notification-item ${notification.read ? '' : 'unread'}" 
+             data-id="${notification.id}">
+          <div class="notification-title">${notification.title}</div>
+          <div class="notification-message">${notification.message}</div>
+          <div class="notification-time">${this.formatNotificationTime(notification.time)}</div>
+        </div>
+      `).join('');
+
+      // Add click handlers for notifications
+      notificationsList.querySelectorAll('.notification-item').forEach(item => {
+        item.addEventListener('click', () => {
+          const notificationId = parseInt(item.dataset.id);
+          this.markNotificationAsRead(notificationId);
+        });
+      });
+    }
+
+    formatNotificationTime(timeString) {
+      const time = new Date(timeString);
+      const now = new Date();
+      const diffMs = now - time;
+      const diffMins = Math.floor(diffMs / (1000 * 60));
+      const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
+      const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+
+      if (diffMins < 60) {
+        return `${diffMins} minutes ago`;
+      } else if (diffHours < 24) {
+        return `${diffHours} hours ago`;
+      } else if (diffDays < 7) {
+        return `${diffDays} days ago`;
+      } else {
+        return time.toLocaleDateString();
+      }
+    }
+
+    updateNotificationBadge(notifications) {
+      const unreadCount = notifications.filter(n => !n.read).length;
+      const badge = document.getElementById('notificationCount');
+      
+      if (badge) {
+        badge.textContent = unreadCount;
+        badge.style.display = unreadCount > 0 ? 'flex' : 'none';
+      }
+    }
+
+    markNotificationAsRead(notificationId) {
+      const notifications = HealthSyncUtils.getItem('notifications') || [];
+      const notification = notifications.find(n => n.id === notificationId);
+      
+      if (notification && !notification.read) {
+        notification.read = true;
+        HealthSyncUtils.setItem('notifications', notifications);
+        this.loadNotifications(); // Reload to update UI
+      }
+    }
+
+    clearAllNotifications() {
+      if (confirm('Clear all notifications?')) {
+        HealthSyncUtils.setItem('notifications', []);
+        this.loadNotifications();
+      }
+    }
+
+    setActivePage() {
+      const currentPage = window.location.pathname.split('/').pop() || 'dashboard.html';
+      const navLinks = document.querySelectorAll('.nav-link');
+      
+      navLinks.forEach(link => {
+        const linkPage = link.getAttribute('href').split('/').pop();
+        if (linkPage === currentPage) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+    }
+  }
+
+  // Initialize navbar when component is loaded
+  document.addEventListener('DOMContentLoaded', () => {
+    new NavbarComponent();
+  });
+</script>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meal Planner | HealthSync</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/meal-planner.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">Health<span>Sync</span></div>
+    <ul>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="vitals.html">Vitals</a></li>
+      <li><a href="reminders.html">Reminders</a></li>
+      <li><a href="meal-planner.html" class="active">Meal Planner</a></li>
+    </ul>
+  </nav>
+
+  <section class="meal-planner-container">
+    <h2 class="page-title">AI Meal Planner</h2>
+
+    <div class="planner-header">
+      <div class="health-goals">
+        <h3>Your Health Goals</h3>
+        <div class="goals-grid">
+          <div class="goal-card" data-goal="weight_loss">
+            <h4>Weight Loss</h4>
+            <p>Calorie deficit meals</p>
+          </div>
+          <div class="goal-card" data-goal="maintenance">
+            <h4>Maintenance</h4>
+            <p>Balanced nutrition</p>
+          </div>
+          <div class="goal-card" data-goal="muscle_gain">
+            <h4>Muscle Gain</h4>
+            <p>High protein diet</p>
+          </div>
+          <div class="goal-card" data-goal="diabetic">
+            <h4>Diabetic</h4>
+            <p>Low sugar options</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="dietary-preferences">
+        <h3>Dietary Preferences</h3>
+        <div class="preferences">
+          <label><input type="checkbox" name="diet" value="vegetarian"> Vegetarian</label>
+          <label><input type="checkbox" name="diet" value="vegan"> Vegan</label>
+          <label><input type="checkbox" name="diet" value="gluten_free"> Gluten Free</label>
+          <label><input type="checkbox" name="diet" value="dairy_free"> Dairy Free</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="meal-plan">
+      <div class="day-selector">
+        <button class="day-btn active" data-day="monday">Monday</button>
+        <button class="day-btn" data-day="tuesday">Tuesday</button>
+        <button class="day-btn" data-day="wednesday">Wednesday</button>
+        <button class="day-btn" data-day="thursday">Thursday</button>
+        <button class="day-btn" data-day="friday">Friday</button>
+        <button class="day-btn" data-day="saturday">Saturday</button>
+        <button class="day-btn" data-day="sunday">Sunday</button>
+      </div>
+
+      <div class="meals-container">
+        <div class="meal-time">
+          <h4>🍳 Breakfast</h4>
+          <div class="meal-card">
+            <h5>Oatmeal with Berries</h5>
+            <p>350 calories • 12g protein</p>
+            <button class="btn-small">View Recipe</button>
+          </div>
+        </div>
+
+        <div class="meal-time">
+          <h4>🥗 Lunch</h4>
+          <div class="meal-card">
+            <h5>Quinoa Salad</h5>
+            <p>450 calories • 18g protein</p>
+            <button class="btn-small">View Recipe</button>
+          </div>
+        </div>
+
+        <div class="meal-time">
+          <h4>🍽️ Dinner</h4>
+          <div class="meal-card">
+            <h5>Grilled Chicken</h5>
+            <p>500 calories • 35g protein</p>
+            <button class="btn-small">View Recipe</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="nutrition-summary">
+      <h3>Daily Nutrition Summary</h3>
+      <div class="nutrition-grid">
+        <div class="nutrition-item">
+          <span class="nutrition-value">1300</span>
+          <span class="nutrition-label">Calories</span>
+        </div>
+        <div class="nutrition-item">
+          <span class="nutrition-value">65g</span>
+          <span class="nutrition-label">Protein</span>
+        </div>
+        <div class="nutrition-item">
+          <span class="nutrition-value">45g</span>
+          <span class="nutrition-label">Carbs</span>
+        </div>
+        <div class="nutrition-item">
+          <span class="nutrition-value">30g</span>
+          <span class="nutrition-label">Fat</span>
+        </div>
+      </div>
+    </div>
+
+    <button class="btn-generate">Generate New Meal Plan</button>
+  </section>
+
+  <script src="js/utils.js"></script>
+  <script src="js/meal-planner.js"></script>
+</body>
+</html>

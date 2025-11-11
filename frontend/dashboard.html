@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HealthSync Dashboard</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+</head>
+<body>
+  <!-- Top Navbar -->
+  <nav class="navbar">
+    <h1>🩺 HealthSync</h1>
+    <div class="user-menu">
+      <span id="userName">User</span>
+      <button id="logoutBtn">Logout</button>
+    </div>
+  </nav>
+
+  <main class="dashboard">
+    <!-- Welcome Section -->
+    <section class="welcome-section fade-in">
+      <h2 id="welcomeUser">Welcome, User!</h2>
+      <p>Here's your health snapshot for today 🩺</p>
+      <div class="date-display" id="currentDate"></div>
+    </section>
+
+    <!-- Quick Stats -->
+    <section class="quick-stats">
+      <div class="stat-card">
+        <h3>Today's Vitals</h3>
+        <div class="stat-value" id="vitalsStatus">Normal</div>
+      </div>
+      <div class="stat-card">
+        <h3>Medications Due</h3>
+        <div class="stat-value" id="medsDue">2</div>
+      </div>
+      <div class="stat-card">
+        <h3>Next Appointment</h3>
+        <div class="stat-value" id="nextAppt">Tomorrow</div>
+      </div>
+    </section>
+
+    <!-- Main Cards Section -->
+    <section class="cards">
+      <div class="card fade-in delay-1">
+        <h3>📊 Vitals Overview</h3>
+        <div class="vital">
+          <p>Blood Pressure: <span id="bp">120/80</span> mmHg</p>
+          <p>Blood Sugar: <span id="sugar">95</span> mg/dL</p>
+          <p>Heart Rate: <span id="hr">76</span> bpm</p>
+        </div>
+        <a href="vitals.html" class="card-link">View Details →</a>
+      </div>
+
+      <div class="card fade-in delay-2">
+        <h3>💊 Medications</h3>
+        <ul id="medList">
+          <li>Metformin – Morning</li>
+          <li>Atenolol – Night</li>
+        </ul>
+        <a href="reminders.html" class="card-link">Manage Medications →</a>
+      </div>
+
+      <div class="card fade-in delay-3">
+        <h3>📅 Appointments</h3>
+        <ul id="apptList">
+          <li>Dr. Sharma – 25 Oct 2025</li>
+          <li>Eye Checkup – 31 Oct 2025</li>
+        </ul>
+        <a href="#" class="card-link">Schedule New →</a>
+      </div>
+    </section>
+
+    <!-- Secondary Navigation -->
+    <nav class="secondary-nav">
+      <h3>Quick Access</h3>
+      <div class="nav-grid">
+        <a href="vitals.html" class="nav-item">
+          <div class="nav-icon">💓</div>
+          <span>Vitals</span>
+        </a>
+        <a href="reminders.html" class="nav-item">
+          <div class="nav-icon">⏰</div>
+          <span>Reminders</span>
+        </a>
+        <a href="meal-planner.html" class="nav-item">
+          <div class="nav-icon">🥗</div>
+          <span>Meal Planner</span>
+        </a>
+        <a href="#" class="nav-item">
+          <div class="nav-icon">📊</div>
+          <span>Reports</span>
+        </a>
+      </div>
+    </nav>
+
+    <!-- Alerts Section -->
+    <section class="alerts fade-in delay-4">
+      <h3>⚠️ Health Alerts</h3>
+      <div id="alertBox" class="alert-box">
+        <p>No abnormal vitals detected ✅</p>
+      </div>
+    </section>
+
+    <!-- Recent Activity -->
+    <section class="recent-activity">
+      <h3>Recent Activity</h3>
+      <div class="activity-list">
+        <div class="activity-item">
+          <span class="activity-time">2 hours ago</span>
+          <span class="activity-text">Recorded blood pressure: 120/80 mmHg</span>
+        </div>
+        <div class="activity-item">
+          <span class="activity-time">5 hours ago</span>
+          <span class="activity-text">Took medication: Metformin</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/utils.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

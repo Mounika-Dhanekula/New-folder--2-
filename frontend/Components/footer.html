@@ -1,0 +1,441 @@
+<!-- Footer Component -->
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-section">
+      <div class="footer-logo">
+        <span class="logo-icon">🩺</span>
+        <span class="logo-text">Health<span class="logo-highlight">Sync</span></span>
+      </div>
+      <p class="footer-description">
+        Your personal health assistant for better living. Track, manage, and improve your health with AI-powered insights.
+      </p>
+      <div class="social-links">
+        <a href="#" class="social-link" aria-label="Facebook">
+          <span class="social-icon">📘</span>
+        </a>
+        <a href="#" class="social-link" aria-label="Twitter">
+          <span class="social-icon">🐦</span>
+        </a>
+        <a href="#" class="social-link" aria-label="Instagram">
+          <span class="social-icon">📷</span>
+        </a>
+        <a href="#" class="social-link" aria-label="LinkedIn">
+          <span class="social-icon">💼</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-section">
+      <h4 class="footer-heading">Features</h4>
+      <ul class="footer-links">
+        <li><a href="vitals.html" class="footer-link">Vitals Tracking</a></li>
+        <li><a href="reminders.html" class="footer-link">Medication Reminders</a></li>
+        <li><a href="meal-planner.html" class="footer-link">Meal Planner</a></li>
+        <li><a href="reports.html" class="footer-link">Health Reports</a></li>
+        <li><a href="#" class="footer-link">AI Insights</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-section">
+      <h4 class="footer-heading">Resources</h4>
+      <ul class="footer-links">
+        <li><a href="#" class="footer-link">Help Center</a></li>
+        <li><a href="#" class="footer-link">Blog</a></li>
+        <li><a href="#" class="footer-link">Health Tips</a></li>
+        <li><a href="#" class="footer-link">FAQ</a></li>
+        <li><a href="#" class="footer-link">Support</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-section">
+      <h4 class="footer-heading">Company</h4>
+      <ul class="footer-links">
+        <li><a href="#" class="footer-link">About Us</a></li>
+        <li><a href="#" class="footer-link">Careers</a></li>
+        <li><a href="#" class="footer-link">Privacy Policy</a></li>
+        <li><a href="#" class="footer-link">Terms of Service</a></li>
+        <li><a href="#" class="footer-link">Contact Us</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-section">
+      <h4 class="footer-heading">Newsletter</h4>
+      <p class="newsletter-text">Stay updated with health tips and new features</p>
+      <form class="newsletter-form" id="newsletterForm">
+        <div class="input-group">
+          <input type="email" placeholder="Enter your email" class="newsletter-input" required>
+          <button type="submit" class="btn-newsletter">
+            <span class="icon">📩</span>
+            Subscribe
+          </button>
+        </div>
+      </form>
+      <div class="app-badges">
+        <a href="#" class="app-badge" aria-label="Download on App Store">
+          <span class="badge-icon">📱</span>
+          <span class="badge-text">App Store</span>
+        </a>
+        <a href="#" class="app-badge" aria-label="Get it on Google Play">
+          <span class="badge-icon">🤖</span>
+          <span class="badge-text">Google Play</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="footer-bottom-content">
+      <p class="copyright">
+        © 2025 HealthSync. All rights reserved. Made with <span class="heart">❤️</span> for better health.
+      </p>
+      <div class="footer-bottom-links">
+        <a href="#" class="footer-bottom-link">Privacy</a>
+        <span class="separator">•</span>
+        <a href="#" class="footer-bottom-link">Terms</a>
+        <span class="separator">•</span>
+        <a href="#" class="footer-bottom-link">Cookies</a>
+        <span class="separator">•</span>
+        <a href="#" class="footer-bottom-link">Security</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: linear-gradient(135deg, var(--text-dark), #1a1a1a);
+    color: white;
+    margin-top: auto;
+  }
+
+  .footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 2rem 2rem;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1.5fr;
+    gap: 2rem;
+  }
+
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  .logo-highlight {
+    color: var(--primary-green);
+  }
+
+  .footer-description {
+    color: #b0b0b0;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    max-width: 300px;
+  }
+
+  .social-links {
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  .social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+  }
+
+  .social-link:hover {
+    background: var(--primary-blue);
+    transform: translateY(-2px);
+  }
+
+  .footer-heading {
+    color: white;
+    margin-bottom: 1.25rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+
+  .footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .footer-link {
+    color: #b0b0b0;
+    text-decoration: none;
+    padding: 0.5rem 0;
+    display: block;
+    transition: color 0.3s ease;
+    border-bottom: 1px solid transparent;
+  }
+
+  .footer-link:hover {
+    color: var(--primary-blue);
+    border-bottom-color: var(--primary-blue);
+  }
+
+  .newsletter-text {
+    color: #b0b0b0;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+  }
+
+  .newsletter-form {
+    margin-bottom: 1.5rem;
+  }
+
+  .input-group {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .newsletter-input {
+    flex: 1;
+    padding: 0.75rem;
+    border: 1px solid #444;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 0.9rem;
+  }
+
+  .newsletter-input::placeholder {
+    color: #888;
+  }
+
+  .newsletter-input:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+  }
+
+  .btn-newsletter {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: var(--primary-blue);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background 0.3s ease;
+    white-space: nowrap;
+  }
+
+  .btn-newsletter:hover {
+    background: #1a5db0;
+  }
+
+  .app-badges {
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  .app-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    text-decoration: none;
+    color: white;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+  }
+
+  .app-badge:hover {
+    background: var(--primary-blue);
+    transform: translateY(-2px);
+  }
+
+  .footer-bottom {
+    border-top: 1px solid #444;
+    padding: 1.5rem 2rem;
+  }
+
+  .footer-bottom-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .copyright {
+    color: #b0b0b0;
+    margin: 0;
+  }
+
+  .heart {
+    color: #ff6b6b;
+  }
+
+  .footer-bottom-links {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .footer-bottom-link {
+    color: #b0b0b0;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+  }
+
+  .footer-bottom-link:hover {
+    color: var(--primary-blue);
+  }
+
+  .separator {
+    color: #666;
+  }
+
+  /* Mobile Styles */
+  @media (max-width: 1024px) {
+    .footer-content {
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .footer-content {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      padding: 2rem 1rem 1rem;
+    }
+
+    .footer-bottom-content {
+      flex-direction: column;
+      gap: 1rem;
+      text-align: center;
+    }
+
+    .input-group {
+      flex-direction: column;
+    }
+
+    .app-badges {
+      justify-content: center;
+    }
+  }
+</style>
+
+<script>
+  class FooterComponent {
+    constructor() {
+      this.init();
+    }
+
+    init() {
+      this.setupEventListeners();
+    }
+
+    setupEventListeners() {
+      // Newsletter form
+      const newsletterForm = document.getElementById('newsletterForm');
+      if (newsletterForm) {
+        newsletterForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          this.handleNewsletterSignup(newsletterForm);
+        });
+      }
+
+      // Smooth scrolling for footer links
+      document.querySelectorAll('.footer-link[href^="#"]').forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const target = document.querySelector(link.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      });
+    }
+
+    handleNewsletterSignup(form) {
+      const emailInput = form.querySelector('input[type="email"]');
+      const email = emailInput.value.trim();
+
+      if (!email) {
+        this.showNewsletterMessage('Please enter your email address', 'error');
+        return;
+      }
+
+      if (!HealthSyncUtils.validateEmail(email)) {
+        this.showNewsletterMessage('Please enter a valid email address', 'error');
+        return;
+      }
+
+      // Simulate API call
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const originalText = submitBtn.innerHTML;
+      submitBtn.innerHTML = 'Subscribing...';
+      submitBtn.disabled = true;
+
+      setTimeout(() => {
+        this.showNewsletterMessage('Thank you for subscribing to our newsletter!', 'success');
+        form.reset();
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+
+        // Save subscription
+        const subscriptions = HealthSyncUtils.getItem('newsletter_subscriptions') || [];
+        subscriptions.push({
+          email: email,
+          subscribedAt: new Date().toISOString()
+        });
+        HealthSyncUtils.setItem('newsletter_subscriptions', subscriptions);
+      }, 1000);
+    }
+
+    showNewsletterMessage(message, type) {
+      // Remove existing message
+      const existingMessage = document.querySelector('.newsletter-message');
+      if (existingMessage) {
+        existingMessage.remove();
+      }
+
+      const messageEl = document.createElement('div');
+      messageEl.className = `newsletter-message ${type}`;
+      messageEl.textContent = message;
+      messageEl.style.cssText = `
+        margin-top: 0.5rem;
+        padding: 0.75rem;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        background: ${type === 'error' ? 'rgba(255, 107, 107, 0.1)' : 'rgba(86, 207, 140, 0.1)'};
+        color: ${type === 'error' ? '#ff6b6b' : '#56cf8c'};
+        border: 1px solid ${type === 'error' ? '#ff6b6b' : '#56cf8c'};
+      `;
+
+      const form = document.getElementById('newsletterForm');
+      form.appendChild(messageEl);
+
+      setTimeout(() => {
+        messageEl.remove();
+      }, 5000);
+    }
+  }
+
+  // Initialize footer when component is loaded
+  document.addEventListener('DOMContentLoaded', () => {
+    new FooterComponent();
+  });
+</script>

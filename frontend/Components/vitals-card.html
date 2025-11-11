@@ -1,0 +1,628 @@
+<!-- Vitals Card Component -->
+<div class="vitals-card-component" id="vitalsCard">
+  <div class="card-header">
+    <h3 class="card-title">
+      <span class="card-icon">💓</span>
+      Vitals Overview
+    </h3>
+    <div class="card-actions">
+      <button class="btn-icon" id="refreshVitals" title="Refresh">
+        <span class="icon">🔄</span>
+      </button>
+      <button class="btn-icon" id="expandVitals" title="Expand">
+        <span class="icon">📊</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="vitals-content">
+    <div class="vitals-grid">
+      <div class="vital-item" data-vital="blood-pressure">
+        <div class="vital-label">Blood Pressure</div>
+        <div class="vital-value" id="bpValue">--/--</div>
+        <div class="vital-unit">mmHg</div>
+        <div class="vital-trend" id="bpTrend">
+          <span class="trend-icon">→</span>
+          <span class="trend-text">Stable</span>
+        </div>
+      </div>
+
+      <div class="vital-item" data-vital="blood-sugar">
+        <div class="vital-label">Blood Sugar</div>
+        <div class="vital-value" id="sugarValue">--</div>
+        <div class="vital-unit">mg/dL</div>
+        <div class="vital-trend" id="sugarTrend">
+          <span class="trend-icon">→</span>
+          <span class="trend-text">Stable</span>
+        </div>
+      </div>
+
+      <div class="vital-item" data-vital="heart-rate">
+        <div class="vital-label">Heart Rate</div>
+        <div class="vital-value" id="hrValue">--</div>
+        <div class="vital-unit">bpm</div>
+        <div class="vital-trend" id="hrTrend">
+          <span class="trend-icon">→</span>
+          <span class="trend-text">Stable</span>
+        </div>
+      </div>
+
+      <div class="vital-item" data-vital="temperature">
+        <div class="vital-label">Temperature</div>
+        <div class="vital-value" id="tempValue">--</div>
+        <div class="vital-unit">°C</div>
+        <div class="vital-trend" id="tempTrend">
+          <span class="trend-icon">→</span>
+          <span class="trend-text">Stable</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="vitals-summary">
+      <div class="summary-item">
+        <span class="summary-label">Last Recorded:</span>
+        <span class="summary-value" id="lastRecorded">--</span>
+      </div>
+      <div class="summary-item">
+        <span class="summary-label">Status:</span>
+        <span class="summary-status" id="vitalsStatus">No data</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-footer">
+    <a href="vitals.html" class="btn-link">
+      View Detailed Vitals
+      <span class="link-arrow">→</span>
+    </a>
+  </div>
+</div>
+
+<style>
+  .vitals-card-component {
+    background: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .vitals-card-component:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-2px);
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 1.5rem 1rem;
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .card-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0;
+    color: var(--text-dark);
+    font-size: 1.2rem;
+  }
+
+  .card-icon {
+    font-size: 1.5rem;
+  }
+
+  .card-actions {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .btn-icon {
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+
+  .btn-icon:hover {
+    background: var(--secondary-blue);
+  }
+
+  .vitals-content {
+    padding: 1.5rem;
+  }
+
+  .vitals-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .vital-item {
+    background: var(--background-light);
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+  }
+
+  .vital-item:hover {
+    border-color: var(--primary-blue);
+    transform: translateY(-1px);
+  }
+
+  .vital-item.abnormal {
+    border-color: var(--warning-orange);
+    background: #fff9e6;
+  }
+
+  .vital-item.critical {
+    border-color: var(--danger-red);
+    background: #ffe6e6;
+  }
+
+  .vital-label {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+
+  .vital-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 0.25rem;
+  }
+
+  .vital-unit {
+    font-size: 0.8rem;
+    color: var(--text-light);
+    margin-bottom: 0.5rem;
+  }
+
+  .vital-trend {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+    font-size: 0.8rem;
+  }
+
+  .trend-icon.up {
+    color: var(--danger-red);
+    transform: rotate(-45deg);
+  }
+
+  .trend-icon.down {
+    color: var(--primary-green);
+    transform: rotate(45deg);
+  }
+
+  .trend-icon.stable {
+    color: var(--text-light);
+  }
+
+  .trend-text {
+    color: var(--text-light);
+  }
+
+  .vitals-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: var(--secondary-blue);
+    border-radius: 8px;
+  }
+
+  .summary-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .summary-label {
+    font-size: 0.8rem;
+    color: var(--text-light);
+  }
+
+  .summary-value {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-dark);
+  }
+
+  .summary-status {
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  .summary-status.normal {
+    background: var(--primary-green);
+    color: white;
+  }
+
+  .summary-status.warning {
+    background: var(--warning-orange);
+    color: white;
+  }
+
+  .summary-status.critical {
+    background: var(--danger-red);
+    color: white;
+  }
+
+  .card-footer {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid var(--border-light);
+    background: var(--background-light);
+  }
+
+  .btn-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--primary-blue);
+    text-decoration: none;
+    font-weight: 600;
+    transition: gap 0.3s ease;
+  }
+
+  .btn-link:hover {
+    gap: 0.75rem;
+  }
+
+  .link-arrow {
+    transition: transform 0.3s ease;
+  }
+
+  .btn-link:hover .link-arrow {
+    transform: translateX(3px);
+  }
+
+  /* Mobile Styles */
+  @media (max-width: 768px) {
+    .vitals-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .vitals-summary {
+      flex-direction: column;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .card-header {
+      padding: 1rem 1rem 0.5rem;
+    }
+
+    .vitals-content {
+      padding: 1rem;
+    }
+
+    .card-footer {
+      padding: 1rem;
+    }
+  }
+</style>
+
+<script>
+  class VitalsCardComponent {
+    constructor(containerId = 'vitalsCard') {
+      this.container = document.getElementById(containerId);
+      this.vitalsData = [];
+      this.init();
+    }
+
+    init() {
+      if (!this.container) return;
+      
+      this.loadVitalsData();
+      this.setupEventListeners();
+      this.renderVitals();
+    }
+
+    loadVitalsData() {
+      this.vitalsData = HealthSyncUtils.getItem('vitals') || [];
+      
+      // Add sample data if empty
+      if (this.vitalsData.length === 0) {
+        this.vitalsData = [
+          {
+            bloodPressure: '120/80',
+            bloodSugar: 95,
+            heartRate: 76,
+            temperature: 36.6,
+            timestamp: new Date().toISOString()
+          },
+          {
+            bloodPressure: '118/78',
+            bloodSugar: 92,
+            heartRate: 72,
+            temperature: 36.5,
+            timestamp: new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString()
+          }
+        ];
+        HealthSyncUtils.setItem('vitals', this.vitalsData);
+      }
+    }
+
+    setupEventListeners() {
+      // Refresh button
+      const refreshBtn = this.container.querySelector('#refreshVitals');
+      if (refreshBtn) {
+        refreshBtn.addEventListener('click', () => {
+          this.refreshVitals();
+        });
+      }
+
+      // Expand button
+      const expandBtn = this.container.querySelector('#expandVitals');
+      if (expandBtn) {
+        expandBtn.addEventListener('click', () => {
+          window.location.href = 'vitals.html';
+        });
+      }
+    }
+
+    renderVitals() {
+      if (this.vitalsData.length === 0) {
+        this.showNoData();
+        return;
+      }
+
+      const latestVital = this.vitalsData[this.vitalsData.length - 1];
+      const previousVital = this.vitalsData.length > 1 ? 
+        this.vitalsData[this.vitalsData.length - 2] : null;
+
+      this.updateVitalValue('bpValue', latestVital.bloodPressure || '--/--');
+      this.updateVitalValue('sugarValue', latestVital.bloodSugar || '--');
+      this.updateVitalValue('hrValue', latestVital.heartRate || '--');
+      this.updateVitalValue('tempValue', latestVital.temperature || '--');
+
+      // Calculate trends
+      if (previousVital) {
+        this.calculateTrend('blood-pressure', latestVital, previousVital);
+        this.calculateTrend('blood-sugar', latestVital, previousVital);
+        this.calculateTrend('heart-rate', latestVital, previousVital);
+        this.calculateTrend('temperature', latestVital, previousVital);
+      }
+
+      // Update summary
+      this.updateSummary(latestVital);
+      this.updateLastRecorded(latestVital.timestamp);
+    }
+
+    updateVitalValue(elementId, value) {
+      const element = document.getElementById(elementId);
+      if (element) {
+        element.textContent = value;
+        
+        // Add animation
+        element.style.animation = 'pulse 0.6s ease';
+        setTimeout(() => {
+          element.style.animation = '';
+        }, 600);
+      }
+    }
+
+    calculateTrend(vitalType, current, previous) {
+      let currentValue, previousValue;
+
+      switch (vitalType) {
+        case 'blood-pressure':
+          currentValue = this.parseBloodPressure(current.bloodPressure);
+          previousValue = this.parseBloodPressure(previous.bloodPressure);
+          break;
+        case 'blood-sugar':
+          currentValue = current.bloodSugar;
+          previousValue = previous.bloodSugar;
+          break;
+        case 'heart-rate':
+          currentValue = current.heartRate;
+          previousValue = previous.heartRate;
+          break;
+        case 'temperature':
+          currentValue = current.temperature;
+          previousValue = previous.temperature;
+          break;
+      }
+
+      if (!currentValue || !previousValue) return;
+
+      const trendElement = document.getElementById(`${vitalType.replace('-', '')}Trend`);
+      if (!trendElement) return;
+
+      const diff = currentValue - previousValue;
+      const trendIcon = trendElement.querySelector('.trend-icon');
+      const trendText = trendElement.querySelector('.trend-text');
+
+      if (Math.abs(diff) < 2) {
+        // Stable
+        trendIcon.className = 'trend-icon stable';
+        trendIcon.textContent = '→';
+        trendText.textContent = 'Stable';
+      } else if (diff > 0) {
+        // Increasing
+        trendIcon.className = 'trend-icon up';
+        trendIcon.textContent = '↗';
+        trendText.textContent = `+${Math.abs(diff).toFixed(1)}`;
+      } else {
+        // Decreasing
+        trendIcon.className = 'trend-icon down';
+        trendIcon.textContent = '↘';
+        trendText.textContent = `-${Math.abs(diff).toFixed(1)}`;
+      }
+    }
+
+    parseBloodPressure(bpString) {
+      if (!bpString) return null;
+      const [systolic] = bpString.split('/').map(Number);
+      return systolic;
+    }
+
+    updateSummary(vital) {
+      const statusElement = document.getElementById('vitalsStatus');
+      if (!statusElement) return;
+
+      let status = 'normal';
+      let statusText = 'Normal';
+
+      // Check each vital against normal ranges
+      if (vital.bloodPressure) {
+        const [systolic, diastolic] = vital.bloodPressure.split('/').map(Number);
+        if (systolic > 140 || diastolic > 90) {
+          status = 'warning';
+          statusText = 'Warning';
+        }
+        if (systolic > 180 || diastolic > 120) {
+          status = 'critical';
+          statusText = 'Critical';
+        }
+      }
+
+      if (vital.bloodSugar && vital.bloodSugar > 180) {
+        status = 'warning';
+        statusText = 'Warning';
+      }
+
+      if (vital.heartRate && (vital.heartRate > 100 || vital.heartRate < 60)) {
+        status = status === 'normal' ? 'warning' : status;
+        statusText = status === 'normal' ? 'Warning' : statusText;
+      }
+
+      statusElement.className = `summary-status ${status}`;
+      statusElement.textContent = statusText;
+
+      // Update vital item styles
+      this.updateVitalItemStatus('blood-pressure', vital);
+      this.updateVitalItemStatus('blood-sugar', vital);
+      this.updateVitalItemStatus('heart-rate', vital);
+      this.updateVitalItemStatus('temperature', vital);
+    }
+
+    updateVitalItemStatus(vitalType, vital) {
+      const item = document.querySelector(`[data-vital="${vitalType}"]`);
+      if (!item) return;
+
+      item.classList.remove('normal', 'abnormal', 'critical');
+
+      let status = 'normal';
+
+      switch (vitalType) {
+        case 'blood-pressure':
+          if (vital.bloodPressure) {
+            const [systolic, diastolic] = vital.bloodPressure.split('/').map(Number);
+            if (systolic > 140 || diastolic > 90) status = 'abnormal';
+            if (systolic > 180 || diastolic > 120) status = 'critical';
+          }
+          break;
+        case 'blood-sugar':
+          if (vital.bloodSugar > 180) status = 'abnormal';
+          if (vital.bloodSugar > 250) status = 'critical';
+          break;
+        case 'heart-rate':
+          if (vital.heartRate > 100 || vital.heartRate < 60) status = 'abnormal';
+          if (vital.heartRate > 140 || vital.heartRate < 50) status = 'critical';
+          break;
+        case 'temperature':
+          if (vital.temperature > 37.5 || vital.temperature < 36.0) status = 'abnormal';
+          if (vital.temperature > 38.5 || vital.temperature < 35.5) status = 'critical';
+          break;
+      }
+
+      if (status !== 'normal') {
+        item.classList.add(status);
+      }
+    }
+
+    updateLastRecorded(timestamp) {
+      const element = document.getElementById('lastRecorded');
+      if (element && timestamp) {
+        const date = new Date(timestamp);
+        element.textContent = HealthSyncUtils.formatDate(date);
+      }
+    }
+
+    showNoData() {
+      const content = this.container.querySelector('.vitals-content');
+      if (content) {
+        content.innerHTML = `
+          <div class="no-data">
+            <div class="no-data-icon">📊</div>
+            <h4>No Vitals Data</h4>
+            <p>Start tracking your health metrics to see insights here.</p>
+            <a href="vitals.html" class="btn-primary">Record First Vitals</a>
+          </div>
+        `;
+      }
+    }
+
+    refreshVitals() {
+      const refreshBtn = this.container.querySelector('#refreshVitals');
+      if (refreshBtn) {
+        refreshBtn.style.animation = 'spin 1s linear';
+        setTimeout(() => {
+          refreshBtn.style.animation = '';
+        }, 1000);
+      }
+
+      // Simulate data refresh
+      setTimeout(() => {
+        this.loadVitalsData();
+        this.renderVitals();
+      }, 500);
+    }
+  }
+
+  // Add CSS animations
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .no-data {
+      text-align: center;
+      padding: 2rem;
+      color: var(--text-light);
+    }
+
+    .no-data-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      opacity: 0.5;
+    }
+
+    .no-data h4 {
+      margin: 0 0 0.5rem 0;
+      color: var(--text-dark);
+    }
+
+    .no-data p {
+      margin: 0 0 1.5rem 0;
+    }
+  `;
+  document.head.appendChild(style);
+
+  // Initialize component when loaded
+  document.addEventListener('DOMContentLoaded', () => {
+    new VitalsCardComponent();
+  });
+</script>

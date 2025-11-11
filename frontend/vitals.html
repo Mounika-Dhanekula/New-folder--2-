@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vitals Tracking | HealthSync</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/vitals.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">Health<span>Sync</span></div>
+    <ul>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="vitals.html" class="active">Vitals</a></li>
+      <li><a href="reminders.html">Reminders</a></li>
+      <li><a href="meal-planner.html">Meal Planner</a></li>
+    </ul>
+  </nav>
+
+  <section class="vitals-container">
+    <h2 class="page-title">Vitals Tracking</h2>
+
+    <div class="vitals-form">
+      <form id="vitalsForm">
+        <div class="input-group">
+          <label>Blood Sugar (Before Meal)</label>
+          <input type="number" placeholder="mg/dL" id="sugarBefore" />
+        </div>
+
+        <div class="input-group">
+          <label>Blood Sugar (After Meal)</label>
+          <input type="number" placeholder="mg/dL" id="sugarAfter" />
+        </div>
+
+        <div class="input-group">
+          <label>Blood Pressure</label>
+          <div class="bp-inputs">
+            <input type="number" placeholder="Systolic" id="bpSys" />
+            <input type="number" placeholder="Diastolic" id="bpDia" />
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label>Heart Rate</label>
+          <input type="number" placeholder="bpm" id="heartRate" />
+        </div>
+
+        <div class="input-group">
+          <label>Temperature</label>
+          <input type="number" placeholder="°C" id="temperature" />
+        </div>
+
+        <div class="input-group">
+          <label>Weight</label>
+          <input type="number" placeholder="kg" id="weight" />
+        </div>
+
+        <div class="input-group">
+          <label>Height</label>
+          <input type="number" placeholder="cm" id="height" />
+        </div>
+
+        <div class="input-group">
+          <label>BMI</label>
+          <input type="text" id="bmi" readonly placeholder="Auto-calculated" />
+        </div>
+
+        <button type="submit" class="btn">Record Vitals</button>
+      </form>
+    </div>
+
+    <div class="vitals-extra">
+      <div class="csv-upload">
+        <label for="csvFile">📁 Import CSV:</label>
+        <input type="file" id="csvFile" accept=".csv" />
+      </div>
+
+      <div class="threshold">
+        <h3>⚙️ Custom Thresholds</h3>
+        <div class="threshold-grid">
+          <div>
+            <label>Blood Pressure Max:</label>
+            <input type="number" placeholder="e.g. 120" id="bpThreshold" />
+          </div>
+          <div>
+            <label>Sugar Max:</label>
+            <input type="number" placeholder="e.g. 140" id="sugarThreshold" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="alert-box" id="alertBox">No alerts currently.</div>
+    <div class="ai-box" id="aiBox">💡 AI Suggestions will appear here.</div>
+
+    <div class="timestamp">
+      <p>⏱️ Last Recorded: <span id="timestamp">--/--/-- --:--</span></p>
+    </div>
+  </section>
+
+  <script src="js/utils.js"></script>
+  <script src="js/vitals.js"></script>
+</body>
+</html>

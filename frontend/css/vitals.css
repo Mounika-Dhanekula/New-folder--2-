@@ -1,0 +1,88 @@
+/* Vitals Page Styles */
+.vitals-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.page-title {
+  color: var(--primary-blue);
+  margin-bottom: 2rem;
+  text-align: center;
+  font-size: 2.5rem;
+}
+
+.vitals-form {
+  background: var(--white);
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  margin-bottom: 2rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.bp-inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+.vitals-extra {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.csv-upload,
+.threshold {
+  background: var(--white);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+}
+
+.threshold-grid {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.alert-box,
+.ai-box {
+  background: var(--white);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  margin-bottom: 1rem;
+  border-left: 4px solid var(--primary-green);
+}
+
+.ai-box {
+  border-left-color: var(--primary-blue);
+}
+
+.timestamp {
+  text-align: center;
+  color: var(--text-light);
+  margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+  .vitals-container {
+    padding: 1rem;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .vitals-extra {
+    grid-template-columns: 1fr;
+  }
+}
